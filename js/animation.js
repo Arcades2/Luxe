@@ -69,3 +69,35 @@ middleTimeline
 	.add(tween3, 0);
 
 middleScene.setTween(middleTimeline);
+
+//MENU
+
+var menu_link = document.querySelector('#menu_link');
+var overlay = document.querySelector('#overlay');
+var menu = document.querySelector('#menu');
+
+var displayed = false;
+
+menu_link.addEventListener('click', function(e) {
+	if (displayed) {
+		TweenMax.to('#menu', .8, {opacity: 0});
+		TweenMax.set('#menu', {visibility: 'hidden', delay: .8});
+		TweenMax.to('#overlay', 1, {opacity: 0});
+		TweenMax.set('#overlay', {visibility: 'hidden', delay: 1});
+		displayed = false;
+	} else {
+		TweenMax.set('#menu', {visibility: 'visible'});
+		TweenMax.to('#menu', .8, {opacity: 1});
+		TweenMax.set('#overlay', {visibility: 'visible'});
+		TweenMax.to('#overlay', 1, {opacity: 0.7});
+		displayed = true;
+	}
+});
+
+overlay.addEventListener('click', function(e) {
+	TweenMax.to('#menu', .8, {opacity: 0});
+	TweenMax.set('#menu', {visibility: 'hidden', delay: .8});
+	TweenMax.to('#overlay', 1, {opacity: 0});
+	TweenMax.set('#overlay', {visibility: 'hidden', delay: 1});
+	displayed = false;
+});
